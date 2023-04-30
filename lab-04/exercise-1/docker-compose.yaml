@@ -1,0 +1,11 @@
+services:
+  nginx:
+    image: nginx:latest
+    volumes:
+      - nginx_data:/usr/share/nginx/html
+    ports:
+      - 80:80
+
+volumes:
+  nginx_data:
+    name: "nginx_data"

@@ -1,0 +1,14 @@
+services:
+
+  app:
+    container_name: 'my_app_container'
+    build: ./app
+    restart: always
+
+  nginx:
+    container_name: 'my_nginx_container'
+    build: ./nginx
+    ports:
+      - '443:443'
+    restart: always
+

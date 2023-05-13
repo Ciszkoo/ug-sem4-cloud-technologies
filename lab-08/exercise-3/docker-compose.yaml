@@ -17,7 +17,7 @@ services:
     networks:
       - back_net
     environment:
-      - POSTGGRES_PASSWORD=postgres
+      - POSTGRES_PASSWORD=postgres
 
   l8ex3-express:
     build: express

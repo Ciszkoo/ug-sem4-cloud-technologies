@@ -1,0 +1,46 @@
+version: '3'
+
+services:
+  l8ex3-redis:
+    image: redis
+    container_name: redis
+    ports:
+      - 6379:6379
+    networks:
+      - back_net
+
+  l8ex3-postgres:
+    image: postgres
+    container_name: postgres
+    ports:
+      - 5432:5432
+    networks:
+      - back_net
+    environment:
+      - POSTGGRES_PASSWORD=postgres
+
+  l8ex3-express:
+    build: express
+    container_name: express
+    ports:
+      - 3000:3000
+    networks:
+      - back_net
+    depends_on:
+      - l8ex3-redis
+      - l8ex3-postgres
+
+  l8ex3-nginx:
+    build: nginx
+    container_name: nginx
+    ports:
+      - 80:80
+    networks:
+      - back_net
+    depends_on:
+      - l8ex3-express
+
+networks:
+  back_net:
+    name: back_net
+    

@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+  lab08ex2-api:
+    container_name: api
+    build:
+      context: ./app
+      dockerfile: ./Dockerfile
+    ports:
+      - 3000:3000
+    networks:
+      - net_B
+    depends_on:
+      - lab08ex2-db
+
+  lab08ex2-db:
+    container_name: redis
+    image: redis
+    ports:
+      - 6379:6379
+    networks:
+      - net_B
+
+networks:
+  net_B:
+    driver: bridge
+    name: net_B
